@@ -1,0 +1,112 @@
+﻿@model proyectofinal.pasaje
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>pasaje</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombrepasajero)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombrepasajero)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.origen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.origen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.destino)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.destino)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fechasalida)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechasalida)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.patente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.patente)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.chofer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.chofer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.precio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.precio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.auxiliar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.auxiliar)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.asiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.asiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.salidabus.chofer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.salidabus.chofer)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

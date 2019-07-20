@@ -1,0 +1,69 @@
+﻿@model IEnumerable<proyectofinal.salidabus>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_salida)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AspNetUsers.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AspNetUsers1.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.bus1.pantente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ciudad.ciudad1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ciudad1.ciudad1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pasaje.nombrepasajero)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_salida)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AspNetUsers.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AspNetUsers1.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.bus1.pantente)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ciudad.ciudad1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ciudad1.ciudad1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pasaje.nombrepasajero)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Idsalida }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Idsalida }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Idsalida })
+        </td>
+    </tr>
+}
+
+</table>

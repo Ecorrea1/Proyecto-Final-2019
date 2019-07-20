@@ -1,0 +1,767 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="bdModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cadete_curso_asistencia">
+          <Key>
+            <PropertyRef Name="id_cadete_curso_asistencia" />
+          </Key>
+          <Property Name="id_cadete_curso_asistencia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_cadete" Type="nvarchar" MaxLength="128" />
+          <Property Name="id_curso" Type="int" />
+          <Property Name="horas_asistidas" Type="int" />
+        </EntityType>
+        <EntityType Name="curso">
+          <Key>
+            <PropertyRef Name="id_curso" />
+          </Key>
+          <Property Name="id_curso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_curso" Type="varchar" MaxLength="50" />
+          <Property Name="id_profesor" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="ficha_medica">
+          <Key>
+            <PropertyRef Name="id_ficha" />
+          </Key>
+          <Property Name="id_ficha" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_cadete" Type="nvarchar" MaxLength="128" />
+          <Property Name="fecha_nacimiento" Type="date" />
+          <Property Name="peso" Type="float" />
+          <Property Name="estatura" Type="float" />
+          <Property Name="resultado_test_coupper" Type="varchar" MaxLength="50" />
+          <Property Name="apto" Type="bit" />
+          <Property Name="estado" Type="bit" />
+        </EntityType>
+        <EntityType Name="matricula">
+          <Key>
+            <PropertyRef Name="id_matricula" />
+          </Key>
+          <Property Name="id_matricula" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_apoderado" Type="nvarchar" MaxLength="128" />
+          <Property Name="id_cadete" Type="nvarchar" MaxLength="128" />
+          <Property Name="valor_matricula" Type="int" />
+          <Property Name="numero_cuotas" Type="int" />
+          <Property Name="matricula_online" Type="bit" />
+          <Property Name="fecha_contrato" Type="date" />
+          <Property Name="fecha_actual" Type="date" />
+        </EntityType>
+        <EntityType Name="pago">
+          <Key>
+            <PropertyRef Name="id_pago" />
+          </Key>
+          <Property Name="id_pago" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_matricula" Type="int" />
+          <Property Name="fecha_pago" Type="date" />
+          <Property Name="numero_cuota" Type="int" />
+          <Property Name="monto_pagado" Type="int" />
+        </EntityType>
+        <Association Name="FK_cadete_curso_asistencia_curso">
+          <End Role="curso" Type="Self.curso" Multiplicity="0..1" />
+          <End Role="cadete_curso_asistencia" Type="Self.cadete_curso_asistencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="curso">
+              <PropertyRef Name="id_curso" />
+            </Principal>
+            <Dependent Role="cadete_curso_asistencia">
+              <PropertyRef Name="id_curso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cadete_curso_cadete">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="cadete_curso_asistencia" Type="Self.cadete_curso_asistencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="cadete_curso_asistencia">
+              <PropertyRef Name="id_cadete" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_curso_profesor">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="curso" Type="Self.curso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="curso">
+              <PropertyRef Name="id_profesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ficha_medica_cadete">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="ficha_medica" Type="Self.ficha_medica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ficha_medica">
+              <PropertyRef Name="id_cadete" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_matricula_apoderado">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="matricula" Type="Self.matricula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="matricula">
+              <PropertyRef Name="id_apoderado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_matricula_cadete">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="matricula" Type="Self.matricula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="matricula">
+              <PropertyRef Name="id_cadete" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pago_matricula">
+          <End Role="matricula" Type="Self.matricula" Multiplicity="0..1" />
+          <End Role="pago" Type="Self.pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="matricula">
+              <PropertyRef Name="id_matricula" />
+            </Principal>
+            <Dependent Role="pago">
+              <PropertyRef Name="id_matricula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="bdModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cadete_curso_asistencia" EntityType="Self.cadete_curso_asistencia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="curso" EntityType="Self.curso" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ficha_medica" EntityType="Self.ficha_medica" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="matricula" EntityType="Self.matricula" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pago" EntityType="Self.pago" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_cadete_curso_asistencia_curso" Association="Self.FK_cadete_curso_asistencia_curso">
+            <End Role="curso" EntitySet="curso" />
+            <End Role="cadete_curso_asistencia" EntitySet="cadete_curso_asistencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cadete_curso_cadete" Association="Self.FK_cadete_curso_cadete">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="cadete_curso_asistencia" EntitySet="cadete_curso_asistencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_curso_profesor" Association="Self.FK_curso_profesor">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="curso" EntitySet="curso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ficha_medica_cadete" Association="Self.FK_ficha_medica_cadete">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="ficha_medica" EntitySet="ficha_medica" />
+          </AssociationSet>
+          <AssociationSet Name="FK_matricula_apoderado" Association="Self.FK_matricula_apoderado">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="matricula" EntitySet="matricula" />
+          </AssociationSet>
+          <AssociationSet Name="FK_matricula_cadete" Association="Self.FK_matricula_cadete">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="matricula" EntitySet="matricula" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pago_matricula" Association="Self.FK_pago_matricula">
+            <End Role="matricula" EntitySet="matricula" />
+            <End Role="pago" EntitySet="pago" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="bdModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="cadete_curso_asistencia">
+          <Key>
+            <PropertyRef Name="id_cadete_curso_asistencia" />
+          </Key>
+          <Property Name="id_cadete_curso_asistencia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_cadete" Type="Int32" />
+          <Property Name="id_curso" Type="Int32" />
+          <Property Name="horas_asistidas" Type="Int32" />
+          <NavigationProperty Name="curso" Relationship="Self.FK_cadete_curso_asistencia_curso" FromRole="cadete_curso_asistencia" ToRole="curso" />
+          <NavigationProperty Name="AspNetUsers" Relationship="bdModel.FK_cadete_curso_cadete" FromRole="cadete_curso_asistencia" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="curso">
+          <Key>
+            <PropertyRef Name="id_curso" />
+          </Key>
+          <Property Name="id_curso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_curso" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="id_profesor" Type="Int32" />
+          <NavigationProperty Name="cadete_curso_asistencia" Relationship="Self.FK_cadete_curso_asistencia_curso" FromRole="curso" ToRole="cadete_curso_asistencia" />
+          <NavigationProperty Name="Profesor" Relationship="bdModel.FK_curso_profesor" FromRole="curso" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="ficha_medica">
+          <Key>
+            <PropertyRef Name="id_ficha" />
+          </Key>
+          <Property Name="id_ficha" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_cadete" Type="Int32" />
+          <Property Name="fecha_nacimiento" Type="DateTime" Precision="0" />
+          <Property Name="peso" Type="Double" />
+          <Property Name="estatura" Type="Double" />
+          <Property Name="resultado_test_coupper" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="apto" Type="Boolean" />
+          <Property Name="estado" Type="Boolean" />
+          <NavigationProperty Name="Cadete" Relationship="bdModel.FK_ficha_medica_cadete" FromRole="ficha_medica" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="matricula">
+          <Key>
+            <PropertyRef Name="id_matricula" />
+          </Key>
+          <Property Name="id_matricula" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_apoderado" Type="Int32" />
+          <Property Name="id_cadete" Type="Int32" />
+          <Property Name="valor_matricula" Type="Int32" />
+          <Property Name="numero_cuotas" Type="Int32" />
+          <Property Name="matricula_online" Type="Boolean" />
+          <Property Name="fecha_contrato" Type="DateTime" Precision="0" />
+          <Property Name="fecha_actual" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="pago" Relationship="Self.FK_pago_matricula" FromRole="matricula" ToRole="pago" />
+          <NavigationProperty Name="Apoderado" Relationship="bdModel.FK_matricula_apoderado" FromRole="matricula" ToRole="AspNetUsers" />
+          <NavigationProperty Name="Cadete" Relationship="bdModel.FK_matricula_cadete" FromRole="matricula" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="pago">
+          <Key>
+            <PropertyRef Name="id_pago" />
+          </Key>
+          <Property Name="id_pago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_matricula" Type="Int32" />
+          <Property Name="fecha_pago" Type="DateTime" Precision="0" />
+          <Property Name="numero_cuota" Type="Int32" />
+          <Property Name="monto_pagado" Type="Int32" />
+          <NavigationProperty Name="matricula" Relationship="Self.FK_pago_matricula" FromRole="pago" ToRole="matricula" />
+        </EntityType>
+        <Association Name="FK_cadete_curso_asistencia_curso">
+          <End Role="curso" Type="Self.curso" Multiplicity="0..1" />
+          <End Role="cadete_curso_asistencia" Type="Self.cadete_curso_asistencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="curso">
+              <PropertyRef Name="id_curso" />
+            </Principal>
+            <Dependent Role="cadete_curso_asistencia">
+              <PropertyRef Name="id_curso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pago_matricula">
+          <End Role="matricula" Type="Self.matricula" Multiplicity="0..1" />
+          <End Role="pago" Type="Self.pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="matricula">
+              <PropertyRef Name="id_matricula" />
+            </Principal>
+            <Dependent Role="pago">
+              <PropertyRef Name="id_matricula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="bdEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="cadete_curso_asistencia" EntityType="Self.cadete_curso_asistencia" />
+          <EntitySet Name="curso" EntityType="Self.curso" />
+          <EntitySet Name="ficha_medica" EntityType="Self.ficha_medica" />
+          <EntitySet Name="matricula" EntityType="Self.matricula" />
+          <EntitySet Name="pago" EntityType="Self.pago" />
+          <AssociationSet Name="FK_cadete_curso_asistencia_curso" Association="Self.FK_cadete_curso_asistencia_curso">
+            <End Role="curso" EntitySet="curso" />
+            <End Role="cadete_curso_asistencia" EntitySet="cadete_curso_asistencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pago_matricula" Association="Self.FK_pago_matricula">
+            <End Role="matricula" EntitySet="matricula" />
+            <End Role="pago" EntitySet="pago" />
+          </AssociationSet>
+          <EntitySet Name="C__MigrationHistory" EntityType="bdModel.C__MigrationHistory" />
+          <EntitySet Name="AspNetRoles" EntityType="bdModel.AspNetRoles" />
+          <EntitySet Name="AspNetUserClaims" EntityType="bdModel.AspNetUserClaims" />
+          <EntitySet Name="AspNetUserLogins" EntityType="bdModel.AspNetUserLogins" />
+          <EntitySet Name="AspNetUsers" EntityType="bdModel.AspNetUsers" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="bdModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="bdModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="bdModel.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ficha_medica_cadete" Association="bdModel.FK_ficha_medica_cadete">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="ficha_medica" EntitySet="ficha_medica" />
+          </AssociationSet>
+          <AssociationSet Name="FK_matricula_apoderado" Association="bdModel.FK_matricula_apoderado">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="matricula" EntitySet="matricula" />
+          </AssociationSet>
+          <AssociationSet Name="FK_matricula_cadete" Association="bdModel.FK_matricula_cadete">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="matricula" EntitySet="matricula" />
+          </AssociationSet>
+          <AssociationSet Name="FK_curso_profesor" Association="bdModel.FK_curso_profesor">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="curso" EntitySet="curso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cadete_curso_cadete" Association="bdModel.FK_cadete_curso_cadete">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="cadete_curso_asistencia" EntitySet="cadete_curso_asistencia" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="bdModel.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="bdModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="bdModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="bdModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="bdModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="AspNetRoles" Relationship="bdModel.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+          <NavigationProperty Name="ficha_medica" Relationship="bdModel.FK_ficha_medica_cadete" FromRole="AspNetUsers" ToRole="ficha_medica" />
+          <NavigationProperty Name="Apoderado" Relationship="bdModel.FK_matricula_apoderado" FromRole="AspNetUsers" ToRole="matricula" />
+          <NavigationProperty Name="Cadete" Relationship="bdModel.FK_matricula_cadete" FromRole="AspNetUsers" ToRole="matricula" />
+          <NavigationProperty Name="curso" Relationship="bdModel.FK_curso_profesor" FromRole="AspNetUsers" ToRole="curso" />
+          <NavigationProperty Name="cadete_curso_asistencia" Relationship="bdModel.FK_cadete_curso_cadete" FromRole="AspNetUsers" ToRole="cadete_curso_asistencia" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Type="bdModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="bdModel.AspNetUserClaims" Role="AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Type="bdModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="bdModel.AspNetUserLogins" Role="AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Type="bdModel.AspNetRoles" Role="AspNetRoles" Multiplicity="*" />
+          <End Type="bdModel.AspNetUsers" Role="AspNetUsers" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_ficha_medica_cadete">
+          <End Type="bdModel.AspNetUsers" Role="AspNetUsers" Multiplicity="0..1" />
+          <End Type="bdModel.ficha_medica" Role="ficha_medica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ficha_medica">
+              <PropertyRef Name="id_cadete" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_matricula_apoderado">
+          <End Type="bdModel.AspNetUsers" Role="AspNetUsers" Multiplicity="0..1" />
+          <End Type="bdModel.matricula" Role="matricula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="matricula">
+              <PropertyRef Name="id_apoderado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_matricula_cadete">
+          <End Type="bdModel.AspNetUsers" Role="AspNetUsers" Multiplicity="0..1" />
+          <End Type="bdModel.matricula" Role="matricula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="matricula">
+              <PropertyRef Name="id_cadete" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_curso_profesor">
+          <End Type="bdModel.AspNetUsers" Role="AspNetUsers" Multiplicity="0..1" />
+          <End Type="bdModel.curso" Role="curso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="curso">
+              <PropertyRef Name="id_profesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cadete_curso_cadete">
+          <End Type="bdModel.AspNetUsers" Role="AspNetUsers" Multiplicity="0..1" />
+          <End Type="bdModel.cadete_curso_asistencia" Role="cadete_curso_asistencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="cadete_curso_asistencia">
+              <PropertyRef Name="id_cadete" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="bdModelStoreContainer" CdmEntityContainer="bdEntities">
+          <EntitySetMapping Name="cadete_curso_asistencia">
+            <EntityTypeMapping TypeName="bdModel.cadete_curso_asistencia">
+              <MappingFragment StoreEntitySet="cadete_curso_asistencia">
+                <ScalarProperty Name="id_cadete_curso_asistencia" ColumnName="id_cadete_curso_asistencia" />
+                <ScalarProperty Name="id_cadete" ColumnName="id_cadete" />
+                <ScalarProperty Name="id_curso" ColumnName="id_curso" />
+                <ScalarProperty Name="horas_asistidas" ColumnName="horas_asistidas" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="curso">
+            <EntityTypeMapping TypeName="bdModel.curso">
+              <MappingFragment StoreEntitySet="curso">
+                <ScalarProperty Name="id_curso" ColumnName="id_curso" />
+                <ScalarProperty Name="nombre_curso" ColumnName="nombre_curso" />
+                <ScalarProperty Name="id_profesor" ColumnName="id_profesor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ficha_medica">
+            <EntityTypeMapping TypeName="bdModel.ficha_medica">
+              <MappingFragment StoreEntitySet="ficha_medica">
+                <ScalarProperty Name="id_ficha" ColumnName="id_ficha" />
+                <ScalarProperty Name="id_cadete" ColumnName="id_cadete" />
+                <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+                <ScalarProperty Name="peso" ColumnName="peso" />
+                <ScalarProperty Name="estatura" ColumnName="estatura" />
+                <ScalarProperty Name="resultado_test_coupper" ColumnName="resultado_test_coupper" />
+                <ScalarProperty Name="apto" ColumnName="apto" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="matricula">
+            <EntityTypeMapping TypeName="bdModel.matricula">
+              <MappingFragment StoreEntitySet="matricula">
+                <ScalarProperty Name="id_matricula" ColumnName="id_matricula" />
+                <ScalarProperty Name="id_apoderado" ColumnName="id_apoderado" />
+                <ScalarProperty Name="id_cadete" ColumnName="id_cadete" />
+                <ScalarProperty Name="valor_matricula" ColumnName="valor_matricula" />
+                <ScalarProperty Name="numero_cuotas" ColumnName="numero_cuotas" />
+                <ScalarProperty Name="matricula_online" ColumnName="matricula_online" />
+                <ScalarProperty Name="fecha_contrato" ColumnName="fecha_contrato" />
+                <ScalarProperty Name="fecha_actual" ColumnName="fecha_actual" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pago">
+            <EntityTypeMapping TypeName="bdModel.pago">
+              <MappingFragment StoreEntitySet="pago">
+                <ScalarProperty Name="id_pago" ColumnName="id_pago" />
+                <ScalarProperty Name="id_matricula" ColumnName="id_matricula" />
+                <ScalarProperty Name="fecha_pago" ColumnName="fecha_pago" />
+                <ScalarProperty Name="numero_cuota" ColumnName="numero_cuota" />
+                <ScalarProperty Name="monto_pagado" ColumnName="monto_pagado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="bdModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="bdModel.AspNetRoles">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="bdModel.AspNetUserClaims">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="bdModel.AspNetUserLogins">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="bdModel.AspNetUsers">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="bdModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

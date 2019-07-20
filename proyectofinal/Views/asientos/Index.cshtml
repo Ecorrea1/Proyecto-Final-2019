@@ -1,0 +1,45 @@
+﻿@model IEnumerable<proyectofinal.asientos>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.asientonumero)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.bus.pantente)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.asientonumero)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.estado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.bus.pantente)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Idasiento }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Idasiento }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Idasiento })
+        </td>
+    </tr>
+}
+
+</table>

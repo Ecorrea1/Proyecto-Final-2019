@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="571ea1f64aa340c3bdee7a851605d3b2" Name="Diagram1" ZoomLevel="100">
+        <EntityTypeShape EntityType="bdModel.cadete_curso_asistencia" Width="2.375" PointX="8.875" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdModel.curso" Width="1.5" PointX="9.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdModel.ficha_medica" Width="1.5" PointX="6.5" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdModel.matricula" Width="1.5" PointX="2" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdModel.pago" Width="1.5" PointX="2" PointY="10.125" IsExpanded="true" />
+        <AssociationConnector Association="bdModel.FK_cadete_curso_asistencia_curso" ManuallyRouted="false" />
+        <AssociationConnector Association="bdModel.FK_pago_matricula" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="bdModel.C__MigrationHistory" Width="1.5" PointX="13.375" PointY="0.875" />
+        <EntityTypeShape EntityType="bdModel.AspNetRoles" Width="1.5" PointX="3.375" PointY="4.5" />
+        <EntityTypeShape EntityType="bdModel.AspNetUserClaims" Width="1.5" PointX="6.625" PointY="1.875" />
+        <EntityTypeShape EntityType="bdModel.AspNetUserLogins" Width="2" PointX="9.5" PointY="5.5" />
+        <EntityTypeShape EntityType="bdModel.AspNetUsers" Width="1.5" PointX="6.5" PointY="5" />
+        <AssociationConnector Association="bdModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="bdModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="bdModel.AspNetUserRoles" />
+        <AssociationConnector Association="bdModel.FK_ficha_medica_cadete" />
+        <AssociationConnector Association="bdModel.FK_matricula_apoderado" />
+        <AssociationConnector Association="bdModel.FK_matricula_cadete" />
+        <AssociationConnector Association="bdModel.FK_curso_profesor" />
+        <AssociationConnector Association="bdModel.FK_cadete_curso_cadete" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
